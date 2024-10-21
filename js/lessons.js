@@ -9,7 +9,7 @@ lessonArray= [
         image: "./assets/pngwing.com(2).png"
     },
     {
-        id: "MATH02",
+        id: "ENG01",
         subject: "English",
         location: "London",
         rating: 4,
@@ -18,7 +18,7 @@ lessonArray= [
         image: "./assets/pngwing.com(2).png"
     },
     {
-        id: "MATH03",
+        id: "GEO01",
         subject: "Geography",
         location: "UAE",
         rating: 5,

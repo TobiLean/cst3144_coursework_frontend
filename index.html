@@ -9,7 +9,7 @@
       src="https://kit.fontawesome.com/2d6490a2b6.js"
       crossorigin="anonymous"
     ></script>
-    <script src="js/lessons.js"></script>
+<!--    <script src="js/lessons.js"></script>-->
     <script src="js/scroll.js"></script>
     <title>After School Lessons</title>
   </head>
@@ -65,12 +65,29 @@
     </div>
   </body>
   <script>
-    var app = new Vue({
+
+    const app = new Vue({
       el: "#app",
       data: {
-        lessons: lessonArray,
+        lessons: [],
       },
-      methods: {},
+      methods: {
+        async getLessons() {
+          try {
+            const response = await fetch("http://localhost:8090/cw/lessons", {
+              method: 'GET',
+            });
+            let data = await response.json();
+            console.log("Got lessons successfully: ", data);
+            this.lessons = data
+          } catch (err) {
+            console.error(err);
+          }
+        },
+      },
+      mounted() {
+        this.getLessons();
+      }
     });
   </script>
 </html>
