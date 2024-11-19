@@ -1,0 +1,65 @@
+[
+    {
+        "id": "FMAT01",
+        "subject": "Further Math",
+        "location": "Manchester",
+        "rating": 4,
+        "price": 800,
+        "spaces": 21,
+        "image": "./assets/pngwing.com(2).png"
+    },
+    {
+        "id": "TDRW01",
+        "subject": "Technical Drawing",
+        "location": "Birmingham",
+        "rating": 3,
+        "price": 300,
+        "spaces": 7,
+        "image": "./assets/pngwing.com(2).png"
+    },
+    {
+        "id": "PLSC01",
+        "subject": "Political Science",
+        "location": "UAE",
+        "rating": 5,
+        "price": 500,
+        "spaces": 6,
+        "image": "./assets/pngwing.com(2).png"
+    },
+    {
+        "id": "AGSC01",
+        "subject": "Agricultural Science",
+        "location": "UAE",
+        "rating": 4,
+        "price": 780,
+        "spaces": 36,
+        "image": "./assets/pngwing.com(2).png"
+    },
+    {
+        "id": "PLSC02",
+        "subject": "Political Science 2",
+        "location": "UAE",
+        "rating": 5,
+        "price": 600,
+        "spaces": 6,
+        "image": "./assets/pngwing.com(2).png"
+    },
+    {
+        "id": "CHEM01",
+        "subject": "Chemistry",
+        "location": "London",
+        "rating": 5,
+        "price": 715,
+        "spaces": 5,
+        "image": "./assets/pngwing.com(2).png"
+    },
+    {
+        "id": "FART01",
+        "subject": "Fine Arts",
+        "location": "UAE",
+        "rating": 4,
+        "price": 1800,
+        "spaces": 7,
+        "image": "./assets/pngwing.com(2).png"
+    }
+]

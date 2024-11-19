@@ -9,18 +9,23 @@
             src="https://kit.fontawesome.com/2d6490a2b6.js"
             crossorigin="anonymous"
     ></script>
-    <!--    <script src="js/lessons.js"></script>-->
+    <!--    <script src="js/lessons.json"></script>-->
     <script src="js/scroll.js"></script>
-    <title>After School Lessons</title>
+    <title>Lessonini</title>
 </head>
 <body>
 <div id="app">
     <div id="navbar">
         <div class="nav_left">
-            <h2>After School Lessons</h2>
+            <h2>Lessonini</h2>
+            <div class="search_bar">
+                <input type="text" name="search_bar_input" id="search_bar" placeholder="search">
+            </div>
         </div>
         <div class="nav_right">
-            <button class="checkout_btn" @click="goToCheckOut">Checkout</button>
+            <button @click="()=> page == 'home' ? goToCheckOut() : goToHome()"
+                    :class="page == 'home' ? 'checkout_btn' : 'back_home_btn' ">Checkout
+            </button>
         </div>
     </div>
     <div id="home" v-if="showLessons">
@@ -28,10 +33,29 @@
 
         </div>
         <div class="hero">
-            <image src="./"></image>
+            <h1 class="hero_title">
+                Lessonini
+            </h1>
+<!--            <image style="order: 0" src="./assets/5569459.jpg"></image>-->
         </div>
         <div class="main">
-            <div class="sidebar"></div>
+            <div class="sidebar">
+                <h1>
+                    Sort
+                </h1>
+                <label for="ascending_price_sort">Sort by price (low - high)</label>
+                <input type="radio" name="sort_btn" id="ascending_price_sort" @click="()=>{
+                    this.updateAllSortingOptions()
+                    this.sortOptions.ascendingByPrice = true;
+                    sortLessons();
+                }">
+                <label for="descending_price_sort">Sort by price (high - low)</label>
+                <input type="radio" name="sort_btn" id="descending_price_sort" @click="()=>{
+                    this.updateAllSortingOptions()
+                    this.sortOptions.descendingByPrice = true;
+                    sortLessons();
+                }">
+            </div>
             <div class="content">
                 <div class="lesson_card" v-for="lesson in lessons" :key="lesson.id">
                     <div class="lesson_card_head">
@@ -72,7 +96,64 @@
         </div>
     </div>
     <div id="checkout_page" v-else>
-
+        <div class="cart_main">
+            <h1 class="cart_header">Your Cart</h1>
+            <div class="cart_content">
+                <div class="order_ticket" v-for="lesson in cart" :key="lesson.id">
+                    <div class="order_ticket_number">1</div>
+                    <div class="order_ticket_img"></div>
+                    <div class="order_ticket_main">
+                        <div class="order_ticket_bio">
+                            <p class="order_ticket_name">{{lesson.subject}}</p>
+                            <p class="order_ticket_desc">
+                                Lorem Dive into the snsB’o oaie aibvebvi iaviov aovbi aapi
+                            </p>
+                        </div>
+                        <div class="order_ticket_bottom">
+                            <div class="order_ticket_price"><i class="fa-dollar"></i><span>{{lesson.price}}</span></div>
+                            <button class="order_ticket_remove_btn red_simple_btn" @click="removeFromCart(lesson.id)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart_details">
+            <form id="orderForm"></form>
+            <div class="receiver_information_section cart_details_card">
+                <h3>Your Details</h3>
+                <div class="input_div">
+                    <label for="receiver_name">Name</label>
+                    <input id="receiver_name" name="user_name" form="orderForm">
+                </div>
+                <div class="input_div">
+                    <label for="receiver_email">Email</label>
+                    <input id="receiver_email" type="email" name="user_email" form="orderForm">
+                </div>
+                <div class="input_div">
+                    <label for="receiver_phone">Phone</label>
+                    <input id="receiver_phone" type="tel" name="user_phone" form="orderForm">
+                </div>
+            </div>
+            <div class="promo_section cart_details_card">
+                <h3>Promo Code</h3>
+                <p class="promo_terms">
+                    Lorem iIOveiuiya svukiyvcviy ivvyiSc i c, utcejg aycvacaiyavc< iyvae. aeilyva iylca ckaeiya
+                </p>
+                <div class="input_div">
+                    <label for="promo_code_input">Promo Code</label>
+                    <input id="promo_code_input" name="promo_code" form="orderForm">
+                </div>
+            </div>
+            <div class="cart_summary_section cart_details_card">
+                <h3>Cart Total</h3>
+                <p class="cart_subtotal">Subtotal <span>500</span></p>
+                <p class="cart_discount">Discount -<span>500</span></p>
+                <div class="cart_summary_section_bottom">
+                    <p class="cart_total">Cart Total <span>500</span></p>
+                    <button class="cart_proceed_btn" type="button" @click="postOrder">Proceed</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
