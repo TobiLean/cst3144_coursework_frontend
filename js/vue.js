@@ -88,7 +88,7 @@ const app = new Vue({
     },
     async getLessons() {
       try {
-        const response = await fetch("http://localhost:8090/lessons", {
+        const response = await fetch("https://cst3144-coursework.onrender.com/lessons", {
           method: 'GET',
         });
         let data = await response.json();
@@ -128,7 +128,7 @@ const app = new Vue({
           })
         }
 
-        const response = await fetch("http://localhost:8090/order", {
+        const response = await fetch("https://cst3144-coursework.onrender.com/order", {
           method: 'POST',
           body: JSON.stringify(jsonData),
           headers: {
@@ -145,7 +145,7 @@ const app = new Vue({
     async updateLesson(lesson) {
       console.log(lesson)
       try {
-        const response = await fetch("http://localhost:8090/update", {
+        const response = await fetch("https://cst3144-coursework.onrender.com/update", {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -324,7 +324,7 @@ const app = new Vue({
       return obj[key];
     },
     fetchLessonImages(imageName) {
-      return `http://localhost:8090/images/${imageName}`
+      return `https://cst3144-coursework.onrender.com/images/${imageName}`
     }
   },
   mounted() {
