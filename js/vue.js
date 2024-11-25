@@ -88,9 +88,13 @@ const app = new Vue({
     goToHome() {
       this.page = 'home';
       this.showLessons = !this.showLessons;
-      this.showSearchResults = false
       let backHomeBtn = document.getElementsByClassName('back_home_btn');
-      backHomeBtn[0].innerText = 'Checkout';
+      if (this.showSearchResults === true) {
+        backHomeBtn[0].innerText = 'Home';
+      } else {
+        backHomeBtn[0].innerText = 'Checkout';
+      }
+      this.showSearchResults = false
     },
     async getLessons() {
       //fetch function to retrieve after-school lessons

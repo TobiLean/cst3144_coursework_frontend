@@ -319,7 +319,7 @@
                 <p class="cart_subtotal">Subtotal <span>{{calculateTotalPrice()}}</span></p>
                 <p class="cart_discount">Discount -<span>500</span></p>
                 <div class="cart_summary_section_bottom">
-                    <p class="cart_total">Cart Total <span>500</span></p>
+                    <p class="cart_total">Cart Total <span>{{calculateTotalPrice() - 500}}</span></p>
                     <button class="cart_proceed_btn" type="button" @click="postOrder"
                             :disabled="isDisabledProceedButton">Proceed
                     </button>
