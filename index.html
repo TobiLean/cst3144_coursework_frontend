@@ -117,7 +117,7 @@
                     <div class="lesson_card_head">
                         <div class="lesson_img">
                             <p class="space_string">{{lesson.spaces}} spaces left</p>
-                            <img :src="lesson.image" :alt="lesson.subject" srcset=""/>
+                            <img :src="fetchLessonImages(lesson.image)" :alt="lesson.subject" srcset=""/>
                         </div>
                         <div class="lesson_card_main">
                             <p class="location_string">
@@ -227,7 +227,7 @@
                     <div class="lesson_card_head">
                         <div class="lesson_img">
                             <p class="space_string">{{lesson.spaces}} spaces left</p>
-                            <img :src="lesson.image" :alt="lesson.subject" srcset=""/>
+                            <img :src="fetchLessonImages(lesson.image)" :alt="lesson.subject" srcset=""/>
                         </div>
                         <div class="lesson_card_main">
                             <p class="location_string">

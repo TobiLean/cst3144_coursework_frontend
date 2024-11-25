@@ -322,6 +322,9 @@ const app = new Vue({
     },
     getKeyValue(obj, key) {
       return obj[key];
+    },
+    fetchLessonImages(imageName) {
+      return `http://localhost:8090/images/${imageName}`
     }
   },
   mounted() {
