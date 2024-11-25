@@ -81,6 +81,7 @@ const app = new Vue({
     goToCheckOut() {
       this.page = 'checkout';
       this.showLessons = !this.showLessons;
+      this.showSearchResults = !this.showSearchResults
       let backHomeBtn = document.getElementsByClassName('checkout_btn');
       backHomeBtn[0].innerText = 'Back';
       if (backHomeBtn[0].innerText === 'Back') {
@@ -338,7 +339,7 @@ const app = new Vue({
       let totalPrice = 0
 
       for (let lesson of this.cart) {
-        totalPrice = totalPrice + Number(lesson.price)
+        totalPrice = totalPrice - 500 + (Number(lesson.price) * Number(lesson.bookedSpaces))
       }
 
       return totalPrice;
