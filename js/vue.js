@@ -25,10 +25,12 @@ const app = new Vue({
   },
   watch: {
     searchString() {
+      //searching on search input change
       this.searchToUrl()
     },
     searchResults: {
       handler() {
+        //Handler to avoid repetitive search suggestions
         this.displayedValues.clear();
       },
       deep: true
@@ -36,6 +38,7 @@ const app = new Vue({
   },
   computed: {
     isDisabledBackButton() {
+      //change back button disabled status
       if (this.page !== 'home') {
         return false;
       } else if (this.cart.length == 0) {
@@ -47,7 +50,7 @@ const app = new Vue({
       return true;
     },
     isDisabledProceedButton() {
-
+      //change proceed button disabled status
       if (this.hasOnlyLetters(this.nameField) && this.isValidEmail(this.emailField) && this.hasOnlyNumbers(this.phoneField)) {
         return false;
       } else {
@@ -61,14 +64,17 @@ const app = new Vue({
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
     hasOnlyLetters(aString) {
+      //function to check if string only contains letters
       let regex = /^[A-Za-z\s]+$/;
       return regex.test(aString);
     },
     isValidEmail(anEmail) {
+      //function to check if email is valid
       let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
       return regex.test(anEmail);
     },
     hasOnlyNumbers(aNumber) {
+      //function to check if string only contains digits
       let regex = /^[0-9]+$/;
       return regex.test(aNumber);
     },
@@ -87,6 +93,7 @@ const app = new Vue({
       backHomeBtn[0].innerText = 'Checkout';
     },
     async getLessons() {
+      //fetch function to retrieve after-school lessons
       try {
         const response = await fetch("https://cst3144-coursework.onrender.com/lessons", {
           method: 'GET',
@@ -143,6 +150,7 @@ const app = new Vue({
       }
     },
     async updateLesson(lesson) {
+      //function to update lesson in the database after making an order
       console.log(lesson)
       try {
         const response = await fetch("https://cst3144-coursework.onrender.com/update", {
@@ -160,7 +168,7 @@ const app = new Vue({
       }
     },
     addToCart(index) {
-
+      //check if there are available spaces in the lesson before adding to cart
       if (this.lessons[index].spaces > 0) {
         if (this.lessons[index].bookedSpaces >= 0) {
           this.lessons[index].bookedSpaces += 1
@@ -281,7 +289,7 @@ const app = new Vue({
       this.showLessons = false;
       this.showSearchResults = true;
 
-      let newUrl = `search?q=${encodeURIComponent(this.searchString)}`;
+      let newUrl = `https://cst3144-coursework.onrender.com/search?q=${encodeURIComponent(this.searchString)}`;
 
       try {
         const response = await fetch((newUrl), {
@@ -325,6 +333,15 @@ const app = new Vue({
     },
     fetchLessonImages(imageName) {
       return `https://cst3144-coursework.onrender.com/images/${imageName}`
+    },
+    calculateTotalPrice() {
+      let totalPrice = 0
+
+      for (let lesson of this.cart) {
+        totalPrice = totalPrice + Number(lesson.price)
+      }
+
+      return totalPrice;
     }
   },
   mounted() {
