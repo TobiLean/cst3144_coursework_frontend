@@ -27,7 +27,6 @@ const app = new Vue({
     searchString() {
       //searching on search input change
       this.searchToUrl();
-      document.getElementsByClassName('checkout_btn')[0].innerText("Home")
     },
     searchResults: {
       handler() {
@@ -285,7 +284,6 @@ const app = new Vue({
       });
     },
     async searchToUrl() {
-
       this.page = 'search_page';
       this.showLessons = false;
       this.showSearchResults = true;
@@ -305,6 +303,9 @@ const app = new Vue({
       } catch (err) {
         console.error("Could not fetch search results from server ", err);
       }
+
+      let homeButton = document.getElementsByClassName("back_home_btn");
+      homeButton[0].innerText("Home");
     },
     findKeyOfValue(arr, value) {
 
