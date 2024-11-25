@@ -81,19 +81,19 @@ const app = new Vue({
     goToCheckOut() {
       this.page = 'checkout';
       this.showLessons = !this.showLessons;
-      this.showSearchResults = false
       let backHomeBtn = document.getElementsByClassName('checkout_btn');
-      backHomeBtn[0].innerText = 'Back';
+      if (this.showSearchResults === true) {
+        backHomeBtn[0].innerText = 'Home';
+      } else {
+        backHomeBtn[0].innerText = 'Back';
+      }
+      this.showSearchResults = false
     },
     goToHome() {
       this.page = 'home';
       this.showLessons = !this.showLessons;
       let backHomeBtn = document.getElementsByClassName('back_home_btn');
-      if (this.showSearchResults === true) {
-        backHomeBtn[0].innerText = 'Home';
-      } else {
-        backHomeBtn[0].innerText = 'Checkout';
-      }
+      backHomeBtn[0].innerText = 'Checkout';
       this.showSearchResults = false
     },
     async getLessons() {
