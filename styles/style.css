@@ -2,7 +2,8 @@
     font-size: 16px;
     --color_primary: rgb(79, 79, 207);
     --color_sub_text: #8a8a8a;
-    --color_subtle_bg: #c5ccd6
+    --color_subtle_bg: #c5ccd6;
+    --color_disbled_bg: #767878;
 }
 
 body {
@@ -25,11 +26,28 @@ body {
     justify-content: space-between;
 }
 
+.search_bar {
+    background-color: green;
+    width: max-content;
+}
+
+.search_bar input {
+    width: 350px;
+}
+
+.searchDropDown {
+    width: 350px;
+    height: max-content;
+    background-color: red;
+    position: absolute;
+    /*display: none;*/
+}
+
 .nav_left {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 450px;
+    width: 650px;
 }
 
 .hero {
@@ -62,6 +80,10 @@ body {
 
 #navbar h2 {
     margin: 0px;
+}
+
+#navbar h2:hover {
+    cursor: pointer;
 }
 
 .lesson_img {
@@ -107,10 +129,21 @@ body {
     background-color: var(--color_primary);
     font-size: 1.2rem;
     color: white;
+    cursor: pointer;
+}
+
+.checkout_btn:disabled, .back_home_btn:disabled, .cart_proceed_btn:disabled {
+    background-color: var(--color_disbled_bg);
+    cursor: not-allowed;
 }
 
 .add_to_cart_btn:hover {
     cursor: pointer;
+}
+
+.add_to_cart_btn:disabled {
+    background-color: var(--color_disbled_bg);
+    cursor: not-allowed;
 }
 
 .lesson_card_head {
