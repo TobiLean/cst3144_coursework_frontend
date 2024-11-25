@@ -81,15 +81,14 @@ const app = new Vue({
     goToCheckOut() {
       this.page = 'checkout';
       this.showLessons = !this.showLessons;
-      this.showSearchResults = !this.showSearchResults
+      this.showSearchResults = false
       let backHomeBtn = document.getElementsByClassName('checkout_btn');
       backHomeBtn[0].innerText = 'Back';
-      if (backHomeBtn[0].innerText === 'Back') {
-      }
     },
     goToHome() {
       this.page = 'home';
       this.showLessons = !this.showLessons;
+      this.showSearchResults = false
       let backHomeBtn = document.getElementsByClassName('back_home_btn');
       backHomeBtn[0].innerText = 'Checkout';
     },
@@ -339,7 +338,11 @@ const app = new Vue({
       let totalPrice = 0
 
       for (let lesson of this.cart) {
-        totalPrice = totalPrice - 500 + (Number(lesson.price) * Number(lesson.bookedSpaces))
+        if (lesson.bookedSpaces > 1) {
+          totalPrice = totalPrice + (Number(lesson.price) * Number(lesson.bookedSpaces))
+        } else {
+          totalPrice = totalPrice + Number(lesson.price)
+        }
       }
 
       return totalPrice;
