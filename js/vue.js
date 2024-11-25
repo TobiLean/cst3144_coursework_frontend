@@ -27,7 +27,7 @@ const app = new Vue({
     searchString() {
       //searching on search input change
       this.searchToUrl();
-      document.getElementsByClassName('back_home_btn')[0].innerText("Home")
+      document.getElementsByClassName('checkout_btn')[0].innerText("Home")
     },
     searchResults: {
       handler() {
