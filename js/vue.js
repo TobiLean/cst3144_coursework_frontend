@@ -26,7 +26,8 @@ const app = new Vue({
   watch: {
     searchString() {
       //searching on search input change
-      this.searchToUrl()
+      this.searchToUrl();
+      document.getElementsByClassName('back_home_btn')[0].innerText("Home")
     },
     searchResults: {
       handler() {
@@ -82,11 +83,7 @@ const app = new Vue({
       this.page = 'checkout';
       this.showLessons = !this.showLessons;
       let backHomeBtn = document.getElementsByClassName('checkout_btn');
-      if (this.showSearchResults === true) {
-        backHomeBtn[0].innerText = 'Home';
-      } else {
-        backHomeBtn[0].innerText = 'Back';
-      }
+      backHomeBtn[0].innerText = 'Back';
       this.showSearchResults = false
     },
     goToHome() {
