@@ -305,7 +305,7 @@ const app = new Vue({
       }
 
       let homeButton = document.getElementsByClassName("back_home_btn");
-      homeButton[0].innerText("Home");
+      homeButton[0].innerText = "Home";
     },
     findKeyOfValue(arr, value) {
 
