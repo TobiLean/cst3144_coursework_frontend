@@ -334,7 +334,7 @@ const app = new Vue({
       return obj[key];
     },
     fetchLessonImages(imageName) {
-      return `https://cst3144-coursework.onrender.comhttps://cst3144-coursework.onrender.com/images/${imageName}`
+      return `https://cst3144-coursework.onrender.com/images/${imageName}`
     },
     calculateTotalPrice() {
       let totalPrice = 0
