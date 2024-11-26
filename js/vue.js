@@ -95,7 +95,7 @@ const app = new Vue({
     async getLessons() {
       //fetch function to retrieve after-school lessons
       try {
-        const response = await fetch("https://cors-anywhere.herokuapp.com/https://cst3144-coursework.onrender.com/lessons", {
+        const response = await fetch("https://cst3144-coursework.onrender.com/lessons", {
           method: 'GET',
         });
         let data = await response.json();
@@ -135,7 +135,7 @@ const app = new Vue({
           })
         }
 
-        const response = await fetch("https://cors-anywhere.herokuapp.com/https://cst3144-coursework.onrender.com/order", {
+        const response = await fetch("https://cst3144-coursework.onrender.com/order", {
           method: 'POST',
           body: JSON.stringify(jsonData),
           headers: {
@@ -153,7 +153,7 @@ const app = new Vue({
       //function to update lesson in the database after making an order
       console.log(lesson)
       try {
-        const response = await fetch("https://cors-anywhere.herokuapp.com/https://cst3144-coursework.onrender.com/update", {
+        const response = await fetch("https://cst3144-coursework.onrender.com/update", {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -291,7 +291,7 @@ const app = new Vue({
       let homeButton = document.getElementsByClassName("back_home_btn");
       homeButton[0].innerText = 'Home';
 
-      let newUrl = `https://cors-anywhere.herokuapp.com/https://cst3144-coursework.onrender.com/search?q=${encodeURIComponent(this.searchString)}`;
+      let newUrl = `https://cst3144-coursework.onrender.com/search?q=${encodeURIComponent(this.searchString)}`;
 
       try {
         const response = await fetch((newUrl), {
@@ -334,7 +334,7 @@ const app = new Vue({
       return obj[key];
     },
     fetchLessonImages(imageName) {
-      return `https://cors-anywhere.herokuapp.com/https://cst3144-coursework.onrender.com/images/${imageName}`
+      return `https://cst3144-coursework.onrender.comhttps://cst3144-coursework.onrender.com/images/${imageName}`
     },
     calculateTotalPrice() {
       let totalPrice = 0
