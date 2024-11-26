@@ -1,3 +1,4 @@
+//Add navbar bottom shadow after scrolling a certain distance
 window.addEventListener("scroll", () => {
     const navbar = document.getElementById("navbar");
     if (window.scrollY > 380) {

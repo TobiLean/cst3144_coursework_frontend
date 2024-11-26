@@ -37,6 +37,9 @@ const app = new Vue({
     }
   },
   computed: {
+    /**
+     * Check if back button should be disabled
+     * */
     isDisabledBackButton() {
       //change back button disabled status
       if (this.page !== 'home') {
@@ -49,6 +52,9 @@ const app = new Vue({
 
       return true;
     },
+    /**
+     * Check if proceed button should be disabled
+     * */
     isDisabledProceedButton() {
       //change proceed button disabled status
       if (this.hasOnlyLetters(this.nameField) && this.isValidEmail(this.emailField) && this.hasOnlyNumbers(this.phoneField)) {
@@ -60,24 +66,46 @@ const app = new Vue({
     }
   },
   methods: {
+    /**
+     * Capitalize first letter of a string
+     * @param {string} string
+     * @return {string}
+     * */
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
-    hasOnlyLetters(aString) {
-      //function to check if string only contains letters
+    /**
+     * Checks if string has only alphabetical letters. Ignores whitespaces
+     * @param {string} string
+     * @return {boolean}
+     * */
+    hasOnlyLetters(string) {
       let regex = /^[A-Za-z\s]+$/;
-      return regex.test(aString);
+      return regex.test(string);
     },
-    isValidEmail(anEmail) {
+    /**
+     * Checks if string is a valid email format
+     * @param {string} email
+     * @return {boolean}
+     * */
+    isValidEmail(email) {
       //function to check if email is valid
       let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-      return regex.test(anEmail);
+      return regex.test(email);
     },
-    hasOnlyNumbers(aNumber) {
+    /**
+     * Checks if string has only numbers.
+     * @param {string} num
+     * @return {boolean}
+     * */
+    hasOnlyNumbers(num) {
       //function to check if string only contains digits
       let regex = /^[0-9]+$/;
-      return regex.test(aNumber);
+      return regex.test(num);
     },
+    /**
+     * Function to go to checkout page.
+     * */
     goToCheckOut() {
       this.page = 'checkout';
       this.showLessons = !this.showLessons;
@@ -85,6 +113,9 @@ const app = new Vue({
       backHomeBtn[0].innerText = 'Back';
       this.showSearchResults = false
     },
+    /**
+     * Function to go to home page
+     * */
     goToHome() {
       this.page = 'home';
       this.showLessons = !this.showLessons;
@@ -92,8 +123,11 @@ const app = new Vue({
       backHomeBtn[0].innerText = 'Checkout';
       this.showSearchResults = false
     },
+    /**
+     * Function to fetch lessons from server and set it in lessons array
+     * @return {Promise<Array>}
+     * */
     async getLessons() {
-      //fetch function to retrieve after-school lessons
       try {
         const response = await fetch("https://cst3144-coursework.onrender.com/lessons", {
           method: 'GET',
@@ -103,7 +137,7 @@ const app = new Vue({
         console.log("def", this.sortOptions.ascendingByPrice)
 
         console.log("Got lessons successfully: ", data);
-        // this.lessons = data
+
         if (this.sortOptions.ascendingByPrice === true) {
           console.log("func", this.sortOptions.ascendingByPrice)
           sorted = data.toSorted((a, b) => a.price - b.price);
@@ -115,6 +149,9 @@ const app = new Vue({
         console.error(err);
       }
     },
+    /**
+     * Function to send order to server and update in cartItems array
+     * */
     async postOrder() {
       try {
         const form = document.getElementById("orderForm");
@@ -149,6 +186,10 @@ const app = new Vue({
         console.error(err);
       }
     },
+    /**
+     * Function to send order to backend to update lesson spaces on database
+     * @param {object} lesson
+     * */
     async updateLesson(lesson) {
       //function to update lesson in the database after making an order
       console.log(lesson)
@@ -167,6 +208,10 @@ const app = new Vue({
         console.error(err, " could not update lesson");
       }
     },
+    /**
+     * Function to add lesson to cart
+     * @param {number} index
+     * */
     addToCart(index) {
       //check if there are available spaces in the lesson before adding to cart
       if (this.lessons[index].spaces > 0) {
@@ -184,7 +229,6 @@ const app = new Vue({
           console.log("lesson id: ", this.lessons[index].id);
 
           if (this.lessons[index].bookedSpaces > 1) {
-            //this.cart[-1].bookedSpaces = this.lessons[index].bookedSpaces;
             console.log("Lesson already in cart, will increment booked spaces if there are still available spaces")
             this.cart[cartIndex].bookedSpaces = this.lessons[index].bookedSpaces;
           }
@@ -199,10 +243,13 @@ const app = new Vue({
         }
       }
 
-      // console.log("All lessons: " + this.cart);
       console.log(this.lessons[index].spaces, " available lesson space(s) after adding to cart!");
 
     },
+    /**
+     * Function to remove lesson from cart
+     * @param {string} id
+     * */
     removeFromCart(id) {
       let index = this.cart.findIndex(lesson => lesson.id === id);
       let lessonIndex = this.lessons.findIndex(lesson => lesson.id === id);
@@ -222,6 +269,12 @@ const app = new Vue({
       }
       console.log(this.lessons[lessonIndex].spaces, " available lesson space(s) after removed from cart!");
     },
+    /**
+     * Function to compare lesson prices
+     * @param {object} a
+     * @param {object} b
+     * @returns {number}-1 if a.price < b.price and 1 if a.price > b.price and 0 if equal
+     * */
     comparePrice(a, b) {
       if (a.price < b.price) {
         return -1
@@ -231,6 +284,12 @@ const app = new Vue({
 
       return 0
     },
+    /**
+     * Function to compare two strings
+     * @param {string} string1
+     * @param {string} string2
+     * @returns {number}-1 if string1 < string2 and 1 if string1 > string2 and 0 if equal
+     * */
     compareTwoStrings(string1, string2) {
       if (string1 === string2) {
         return 0;
@@ -240,6 +299,9 @@ const app = new Vue({
         return 1;
       }
     },
+    /**
+     * Function to sort lessons
+     * */
     sortLessons() {
       let sorted;
 
@@ -277,12 +339,19 @@ const app = new Vue({
         this.lessons = sorted
       }
     },
+    /**
+     * Function to update sorting options status
+     * */
     updateAllSortingOptions() {
       Object.keys(this.sortOptions).forEach(key => {
         this.sortOptions[key] = false;
         console.log(this.sortOptions[key])
       });
     },
+    /**
+     * Function to add lesson to cart
+     * @return {Promise}
+     * */
     async searchToUrl() {
       this.page = 'search_page';
       this.showLessons = false;
@@ -307,6 +376,12 @@ const app = new Vue({
         console.error("Could not fetch search results from server ", err);
       }
     },
+    /**
+     * Function to find key of a value in an array of objects
+     * @param {array} arr
+     * @param {string} value
+     * @return {string} key
+     * */
     findKeyOfValue(arr, value) {
 
       let fields = [
@@ -330,12 +405,27 @@ const app = new Vue({
       }
       return "null"
     },
+    /**
+     * Function to get the value of an object key
+     * @param {object} obj
+     * @param {string} key
+     * @return {string} value
+     * */
     getKeyValue(obj, key) {
       return obj[key];
     },
+    /**
+     * Function to load image url
+     * @param {string} imageName
+     * @return {string} image url
+     * */
     fetchLessonImages(imageName) {
       return `https://cst3144-coursework.onrender.com/images/${imageName}`
     },
+    /**
+     * Function to calculate total price of cart items
+     * @return {number} totalPrice
+     * */
     calculateTotalPrice() {
       let totalPrice = 0
 
