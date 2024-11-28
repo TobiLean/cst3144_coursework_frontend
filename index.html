@@ -351,7 +351,7 @@
             <div class="promo_section cart_details_card">
                 <h3>Promo Code</h3>
                 <p class="promo_terms">
-                    Lorem iIOveiuiya svukiyvcviy ivvyiSc i c, utcejg aycvacaiyavc< iyvae. aeilyva iylca ckaeiya
+                    Enter a promo code if you have one and you might get a discount (Service not functional at this moment)
                 </p>
                 <div class="input_div">
                     <label for="promo_code_input">Promo Code</label>
@@ -360,10 +360,10 @@
             </div>
             <div class="cart_summary_section cart_details_card">
                 <h3>Cart Total</h3>
-                <p class="cart_subtotal">Subtotal <span>{{calculateTotalPrice()}}</span></p>
-                <p class="cart_discount">Discount -<span>500</span></p>
+                <p class="cart_subtotal">Subtotal <span>&#163 {{calculateTotalPrice()}}</span></p>
+                <p class="cart_discount">Discount &#163 -<span>500</span></p>
                 <div class="cart_summary_section_bottom">
-                    <p class="cart_total">Cart Total <span>{{calculateTotalPrice() - 500}}</span></p>
+                    <p class="cart_total">Cart Total <span>&#163 {{calculateTotalPrice() - 500}}</span></p>
                     <button class="cart_proceed_btn" type="button" @click="postOrder"
                             :disabled="isDisabledProceedButton">Proceed
                     </button>
