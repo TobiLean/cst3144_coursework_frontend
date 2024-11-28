@@ -107,7 +107,7 @@ const app = new Vue({
      * Function to go to checkout page.
      * */
     goToCheckOut() {
-      this.page = 'checkout';
+      this.page = 'cart';
       this.showLessons = !this.showLessons;
       let backHomeBtn = document.getElementsByClassName('checkout_btn');
       backHomeBtn[0].innerText = 'Back';
@@ -120,7 +120,7 @@ const app = new Vue({
       this.page = 'home';
       this.showLessons = !this.showLessons;
       let backHomeBtn = document.getElementsByClassName('back_home_btn');
-      backHomeBtn[0].innerText = 'Checkout';
+      backHomeBtn[0].innerText = 'Cart';
       this.showSearchResults = false
     },
     /**
