@@ -127,6 +127,7 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     background-color: white;
+    overflow: hidden;
 }
 
 .lesson_img img {
@@ -414,6 +415,7 @@ body {
     display: inline-block;
     margin-right: 64px;
     border-radius: 30px;
+    overflow: hidden;
 }
 
 .order_ticket_img img {

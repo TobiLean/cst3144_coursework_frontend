@@ -308,8 +308,8 @@
         <div class="cart_main">
             <h1 class="cart_header">Your Cart</h1>
             <div class="cart_content">
-                <div class="order_ticket" v-for="lesson in cart" :key="lesson.id">
-                    <div class="order_ticket_number">1</div>
+                <div class="order_ticket" v-for="(lesson, index) in cart" :key="lesson.id">
+                    <div class="order_ticket_number">{{index + 1}}</div>
                     <div class="order_ticket_img">
                         <img :src="fetchLessonImages(lesson.image)" :alt="lesson.subject" srcset=""/>
                     </div>
