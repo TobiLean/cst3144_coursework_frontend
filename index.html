@@ -22,9 +22,13 @@
                 <button type="submit"><i class="fa-solid fa-search" @click="searchToUrl"></i></button>
                 <div class="searchDropDown">
                     <div class="search_result" v-for="lesson in searchResults" :key="lesson.id">
-                        <p class="subject_string"
-                           v-if="!displayedValues.has(getKeyValue(lesson, findKeyOfValue(searchResults, capitalizeFirstLetter(searchString))))">
-                            <span>{{findKeyOfValue(searchResults, capitalizeFirstLetter(searchString))}}</span>
+                        <p class="search_suggestion"
+                           v-if="!displayedValues.has(getKeyValue(lesson, findKeyOfValue(searchResults, capitalizeFirstLetter(searchString))))"
+                           @click="()=>{
+                                searchString=getKeyValue(lesson, findKeyOfValue(searchResults, capitalizeFirstLetter(searchString)))
+                           }"
+                        >
+                            <span>{{findKeyOfValue(searchResults, capitalizeFirstLetter(searchString))}} |</span>
                             {{getKeyValue(lesson, findKeyOfValue(searchResults, capitalizeFirstLetter(searchString)))}}
                             {{ displayedValues.add(getKeyValue(lesson, findKeyOfValue(searchResults, capitalizeFirstLetter(searchString)))) && ''
                             }}
@@ -52,70 +56,106 @@
         </div>
         <div class="main">
             <div class="sidebar">
-                <h1>
-                    Sort
-                </h1>
-                <label for="ascending_price_sort">Sort by price (low - high)</label>
-                <input type="radio" name="sort_btn" id="ascending_price_sort" @click="()=>{
+                <div class="sort_section">
+                    <h1>
+                        Sort
+                    </h1>
+                    <div class="sort_option">
+                        <label for="ascending_price_sort">Sort by price (low - high)</label>
+                        <input type="radio" name="sort_btn" id="ascending_price_sort" @click="()=>{
                     this.updateAllSortingOptions()
                     this.sortOptions.ascendingByPrice = true;
                     sortLessons();
-                }">
-                </br>
-                <label for="descending_price_sort">Sort by price (high - low)</label>
-                <input type="radio" name="sort_btn" id="descending_price_sort" @click="()=>{
-                    this.updateAllSortingOptions()
-                    this.sortOptions.descendingByPrice = true;
-                    sortLessons();
-                }">
-                </br>
-                <label for="ascending_location_sort">Sort by location (a - z)</label>
-                <input type="radio" name="sort_btn" id="ascending_location_sort" @click="()=>{
-                    this.updateAllSortingOptions()
-                    this.sortOptions.ascendingByLocation = true;
-                    sortLessons();
-                }">
-                </br>
-                <label for="descending_location_sort">Sort by location (z - a)</label>
-                <input type="radio" name="sort_btn" id="descending_location_sort" @click="()=>{
-                    this.updateAllSortingOptions()
-                    this.sortOptions.descendingByLocation = true;
-                    sortLessons();
-                }">
-                </br>
-                <label for="ascending_subject_sort">Sort by subject (a - z)</label>
-                <input type="radio" name="sort_btn" id="ascending_subject_sort" @click="()=>{
-                    this.updateAllSortingOptions()
-                    this.sortOptions.ascendingBySubject = true;
-                    sortLessons();
-                }">
-                </br>
-                <label for="descending_subject_sort">Sort by subject (z - a)</label>
-                <input type="radio" name="sort_btn" id="descending_subject_sort" @click="()=>{
-                    this.updateAllSortingOptions()
-                    this.sortOptions.descendingBySubject = true;
-                    sortLessons();
-                }">
-                </br>
-                <label for="ascending_spaces_sort">Sort by spaces (low - high)</label>
-                <input type="radio" name="sort_btn" id="ascending_spaces_sort" @click="()=>{
-                    this.updateAllSortingOptions()
-                    this.sortOptions.ascendingBySpaces = true;
-                    sortLessons();
-                }">
-                </br>
-                <label for="descending_spaces_sort">Sort by spaces (high - low)</label>
-                <input type="radio" name="sort_btn" id="descending_spaces_sort" @click="()=>{
+                    }">
+                    </div>
+
+                    </br>
+
+                    <div class="sort_option">
+                        <label for="descending_price_sort">Sort by price (high - low)</label>
+                        <input type="radio" name="sort_btn" id="descending_price_sort" @click="()=>{
+                        this.updateAllSortingOptions()
+                        this.sortOptions.descendingByPrice = true;
+                        sortLessons();
+                    }">
+                    </div>
+
+                    </br>
+
+                    <div class="sort_option">
+                        <label for="ascending_location_sort">Sort by location (a - z)</label>
+                        <input type="radio" name="sort_btn" id="ascending_location_sort" @click="()=>{
+                        this.updateAllSortingOptions()
+                        this.sortOptions.ascendingByLocation = true;
+                        sortLessons();
+                    }">
+                    </div>
+
+                    </br>
+
+                    <div class="sort_option">
+                        <label for="descending_location_sort">Sort by location (z - a)</label>
+                        <input type="radio" name="sort_btn" id="descending_location_sort" @click="()=>{
+                        this.updateAllSortingOptions()
+                        this.sortOptions.descendingByLocation = true;
+                        sortLessons();
+                    }">
+                    </div>
+
+                    </br>
+
+                    <div class="sort_option">
+                        <label for="ascending_subject_sort">Sort by subject (a - z)</label>
+                        <input type="radio" name="sort_btn" id="ascending_subject_sort" @click="()=>{
+                        this.updateAllSortingOptions()
+                        this.sortOptions.ascendingBySubject = true;
+                        sortLessons();
+                    }">
+                    </div>
+
+                    </br>
+
+                    <div class="sort_option">
+                        <label for="descending_subject_sort">Sort by subject (z - a)</label>
+                        <input type="radio" name="sort_btn" id="descending_subject_sort" @click="()=>{
+                        this.updateAllSortingOptions()
+                        this.sortOptions.descendingBySubject = true;
+                        sortLessons();
+                    }">
+                    </div>
+
+                    </br>
+
+                    <div class="sort_option">
+                        <label for="ascending_spaces_sort">Sort by spaces (low - high)</label>
+                        <input type="radio" name="sort_btn" id="ascending_spaces_sort" @click="()=>{
+                        this.updateAllSortingOptions()
+                        this.sortOptions.ascendingBySpaces = true;
+                        sortLessons();
+                    }">
+                    </div>
+
+                    </br>
+
+                    <div class="sort_option">
+                        <label for="descending_spaces_sort">Sort by spaces (high - low)</label>
+                        <input type="radio" name="sort_btn" id="descending_spaces_sort" @click="()=>{
                     this.updateAllSortingOptions()
                     this.sortOptions.descendingBySpaces = true;
                     sortLessons();
                 }">
+                    </div>
+
+                </div>
             </div>
             <div class="content">
                 <div class="lesson_card" v-for="lesson in lessons" :key="lesson.id">
                     <div class="lesson_card_head">
                         <div class="lesson_img">
-                            <p class="space_string">{{lesson.spaces}} spaces left</p>
+                            <div class="lesson_spaces_div">
+                                <div class="blurred-background"></div>
+                                <p class="space_string">{{lesson.spaces}} spaces left</p>
+                            </div>
                             <img :src="fetchLessonImages(lesson.image)" :alt="lesson.subject" srcset=""/>
                         </div>
                         <div class="lesson_card_main">
@@ -225,7 +265,10 @@
                 <div class="lesson_card" v-for="lesson in searchResults" :key="lesson.id">
                     <div class="lesson_card_head">
                         <div class="lesson_img">
-                            <p class="space_string">{{lesson.spaces}} spaces left</p>
+                            <div class="lesson_spaces_div">
+                                <div class="blurred-background"></div>
+                                <p class="space_string">{{lesson.spaces}} spaces left</p>
+                            </div>
                             <img :src="fetchLessonImages(lesson.image)" :alt="lesson.subject" srcset=""/>
                         </div>
                         <div class="lesson_card_main">
@@ -267,12 +310,14 @@
             <div class="cart_content">
                 <div class="order_ticket" v-for="lesson in cart" :key="lesson.id">
                     <div class="order_ticket_number">1</div>
-                    <div class="order_ticket_img"></div>
+                    <div class="order_ticket_img">
+                        <img :src="fetchLessonImages(lesson.image)" :alt="lesson.subject" srcset=""/>
+                    </div>
                     <div class="order_ticket_main">
                         <div class="order_ticket_bio">
                             <p class="order_ticket_name">{{lesson.subject}}</p>
                             <p class="order_ticket_desc">
-                                Lorem Dive into the snsB’o oaie aibvebvi iaviov aovbi aapi
+                                {{lesson.description}}
                             </p>
                             <p class="order_ticket_booked_spaces">{{lesson.bookedSpaces}}</p>
                         </div>
