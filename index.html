@@ -179,7 +179,7 @@
                               <i class="fa-bounce" :class="star <= lesson.rating ? 'fas fa-star' : 'far fa-star' "
                                  style="--fa-bounce-rebound: 3px; --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1"></i>
                             </span>
-                            <p class="price_string"><span class="fa-dollar"><i></i></span>{{lesson.price}}</p>
+                            <p class="price_string"><span class="fa-dollar"><i></i></span>&#163 {{lesson.price}}</p>
                         </div>
                         <div class="bait_right">
                             <button :disabled="lesson.spaces == 0 ? true : false" class="add_to_cart_btn"
@@ -292,7 +292,7 @@
                               <i class="fa-bounce" :class="star <= lesson.rating ? 'fas fa-star' : 'far fa-star' "
                                  style="--fa-bounce-rebound: 3px; --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1"></i>
                             </span>
-                            <p class="price_string"><span class="fa-dollar"><i></i></span>{{lesson.price}}</p>
+                            <p class="price_string"><span class="fa-dollar"><i></i></span>&#163 {{lesson.price}}</p>
                         </div>
                         <div class="bait_right">
                             <button :disabled="lesson.spaces == 0 ? true : false" class="add_to_cart_btn"
@@ -322,7 +322,7 @@
                             <p class="order_ticket_booked_spaces">{{lesson.bookedSpaces}}</p>
                         </div>
                         <div class="order_ticket_bottom">
-                            <div class="order_ticket_price"><i class="fa-dollar"></i><span>{{lesson.price}}</span></div>
+                            <div class="order_ticket_price"><i class="fa-dollar"></i><span>&#163 {{lesson.price}}</span></div>
                             <button class="order_ticket_remove_btn red_simple_btn" @click="removeFromCart(lesson.id)">
                                 Remove
                             </button>
